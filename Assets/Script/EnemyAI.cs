@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     private IState currentState;
+    public EnemyAudio Audio;
     public VisionSystem Vision;
 
     void Start()

@@ -1,4 +1,4 @@
-using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class ChaseState : IState
 {
@@ -11,7 +11,18 @@ public class ChaseState : IState
 
     public void Enter()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        FadeController fade = Object.FindFirstObjectByType<FadeController>();
+
+        if (fade != null)
+        {
+            fade.FadeAndReload();
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex
+            );
+        }
     }
 
     public void Update() { }
