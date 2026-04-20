@@ -1,3 +1,4 @@
 # TPIAYOPT
 
-Hola tobi =)
+WASD PARA MOVERSE
+Objetivo: Llegar a la puerta
