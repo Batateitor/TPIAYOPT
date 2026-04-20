@@ -885,6 +885,7 @@ MonoBehaviour:
   Audio: {fileID: 357935725}
   Vision: {fileID: 357935726}
   rotationSpeed: 50
+  rotationFollowSpeed: 10
 --- !u!114 &357935725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2510,6 +2511,7 @@ MonoBehaviour:
   Audio: {fileID: 1260055574}
   Vision: {fileID: 1260055575}
   rotationSpeed: 50
+  rotationFollowSpeed: 10
 --- !u!114 &1260055574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3656,6 +3658,7 @@ MonoBehaviour:
   Audio: {fileID: 2021929434}
   Vision: {fileID: 2021929435}
   rotationSpeed: 50
+  rotationFollowSpeed: 10
 --- !u!114 &2021929434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3988,6 +3991,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2125870552}
+    - target: {fileID: 5847486381675208881, guid: 9904c9c51f34a1047bd89c0a62671e61, type: 3}
+      propertyPath: rotationFollowSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6255674257355184243, guid: 9904c9c51f34a1047bd89c0a62671e61, type: 3}
       propertyPath: m_LocalPosition.x
       value: 78.85443

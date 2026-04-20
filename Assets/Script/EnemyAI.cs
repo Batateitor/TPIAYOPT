@@ -7,6 +7,8 @@ public class EnemyAI : MonoBehaviour
     public EnemyAudio Audio;
     public VisionSystem Vision;
     [SerializeField] private float rotationSpeed = 35f;
+    [SerializeField] private float rotationFollowSpeed = 1.5f;
+    public float RotationSpeed => rotationFollowSpeed;
 
     void Start()
     {
