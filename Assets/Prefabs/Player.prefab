@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4992033889873320335}
   - component: {fileID: 6103733362822658591}
   - component: {fileID: 6569725666972802481}
-  - component: {fileID: 2529136658598335903}
   - component: {fileID: 1129867965640942779}
   m_Layer: 0
   m_Name: Player
@@ -190,25 +189,6 @@ MonoBehaviour:
   runSpeed: 8
   fatigueSpeed: 3
   staminaBar: {fileID: 0}
---- !u!114 &2529136658598335903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6337901040894270708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0f6ccdfe27ce674d917833ac8a026d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
-  maxStamina: 30
-  currentStamina: 30
-  drainRate: 20
-  regenRate: 10
-  fatigueRegenRate: 5
-  isRunning: 0
-  isFatigued: 0
 --- !u!114 &1129867965640942779
 MonoBehaviour:
   m_ObjectHideFlags: 0

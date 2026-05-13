@@ -7,8 +7,8 @@ public class PlayerStamina : MonoBehaviour
     public float currentStamina;
 
     [Header("Rates")]
-    public float drainRate = 25f;
-    public float regenRate = 15f;
+    public float drainRate = 20f;
+    public float regenRate = 10f;
     public float fatigueRegenRate = 5f;
 
     [Header("State")]

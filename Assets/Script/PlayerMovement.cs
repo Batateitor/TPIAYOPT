@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
             speed = walkSpeed;
 
         controller.Move(move * speed * Time.deltaTime);
-        transform.Translate(move.normalized * speed * Time.deltaTime);
     }
     
     void Start()
