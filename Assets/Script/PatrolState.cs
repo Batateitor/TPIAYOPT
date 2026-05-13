@@ -1,8 +1,8 @@
 public class PatrolState : IState
 {
-    private EnemyAI enemy;
+    private CameraEnemyAI enemy;
 
-    public PatrolState(EnemyAI enemy)
+    public PatrolState(CameraEnemyAI enemy)
     {
         this.enemy = enemy;
     }

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ChaseState : IState
 {
-    private EnemyAI enemy;
+    private CameraEnemyAI enemy;
 
-    public ChaseState(EnemyAI enemy)
+    public ChaseState(CameraEnemyAI enemy)
     {
         this.enemy = enemy;
     }

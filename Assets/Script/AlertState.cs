@@ -2,37 +2,54 @@ using UnityEngine;
 
 public class AlertState : IState
 {
-    private EnemyAI enemy;
-    private float timer;
-    private float alertDuration = 2f;
+    private CameraEnemyAI enemy;
+
     private Transform player;
 
-    public AlertState(EnemyAI enemy)
+    private float detectionTime = 3f;
+    private float currentDetection;
+
+    public AlertState(CameraEnemyAI enemy)
     {
         this.enemy = enemy;
     }
 
     public void Enter()
     {
-        timer = alertDuration;
-
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        currentDetection = 0f;
 
         if (enemy.Audio != null)
             enemy.Audio.PlayAlert();
+
+        if (enemy.DetectionBar != null)
+            enemy.DetectionBar.gameObject.SetActive(true);
     }
 
     public void Update()
     {
-        if (enemy == null || enemy.Vision == null) return;
+        if (enemy == null || enemy.Vision == null || player == null) return;
 
-        if (!enemy.Vision.CanSeeTarget())
+        bool canSee = enemy.Vision.CanSeeTarget();
+
+        if (canSee)
         {
-            enemy.ChangeState(new PatrolState(enemy));
-            return;
+            currentDetection += Time.deltaTime;
+        }
+        else
+        {
+            currentDetection -= Time.deltaTime;
         }
 
-        if (player != null)
+        currentDetection = Mathf.Clamp(currentDetection, 0, detectionTime);
+
+        if (enemy.DetectionBar != null)
+        {
+            enemy.DetectionBar.SetValue(currentDetection / detectionTime);
+        }
+
+        if (canSee)
         {
             Vector3 direction = player.position - enemy.transform.position;
             direction.y = 0;
@@ -49,13 +66,21 @@ public class AlertState : IState
             }
         }
 
-        timer -= Time.deltaTime;
+        if (!canSee && currentDetection <= 0)
+        {
+            enemy.ChangeState(new PatrolState(enemy));
+            return;
+        }
 
-        if (timer <= 0)
+        if (currentDetection >= detectionTime)
         {
             enemy.ChangeState(new ChaseState(enemy));
         }
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        if (enemy.DetectionBar != null)
+            enemy.DetectionBar.gameObject.SetActive(false);
+    }
 }
