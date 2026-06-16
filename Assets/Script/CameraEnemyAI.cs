@@ -8,7 +8,7 @@ public class CameraEnemyAI : MonoBehaviour
     public VisionSystem Vision;
     public WorldSpaceBar DetectionBar;
     [SerializeField] private float rotationSpeed = 35f;
-    [SerializeField] private float rotationFollowSpeed = 3.5f;
+    [SerializeField] private float rotationFollowSpeed = 1.5f;
     public float RotationSpeed => rotationFollowSpeed;
 
     void Start()
