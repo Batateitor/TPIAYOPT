@@ -1848,6 +1848,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8557002723003063263, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -8557002723003063263, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
       propertyPath: m_LocalPosition.z
       value: -489.20334
       objectReference: {fileID: 0}
@@ -1923,6 +1927,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -5477749408508380018, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 24.9
+      objectReference: {fileID: 0}
     - target: {fileID: -4906838889796845047, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
       propertyPath: m_Name
       value: CumuloDeCajasB
@@ -1950,6 +1958,10 @@ PrefabInstance:
     - target: {fileID: -3542852092398272455, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 130.2145
+      objectReference: {fileID: 0}
+    - target: {fileID: -3542852092398272455, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 24.9
       objectReference: {fileID: 0}
     - target: {fileID: -3540495426589365078, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
       propertyPath: m_Name
@@ -2051,6 +2063,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -131.02567
       objectReference: {fileID: 0}
+    - target: {fileID: -1255605710908113952, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 24.9
+      objectReference: {fileID: 0}
     - target: {fileID: -652209905907201759, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
       propertyPath: m_Name
       value: CumuloDeCajasC
@@ -2119,6 +2135,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 56.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4356877828898064976, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
       propertyPath: m_Name
       value: CumuloDeCajasA
@@ -2134,6 +2154,10 @@ PrefabInstance:
     - target: {fileID: 4504409719310791647, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071954541378243815, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 24.9
       objectReference: {fileID: 0}
     - target: {fileID: 5071954541378243815, guid: 2454cac14bde159448884c8b4ae33d65, type: 3}
       propertyPath: m_LocalPosition.z
