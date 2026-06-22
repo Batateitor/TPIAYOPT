@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4992033889873320335}
   - component: {fileID: 6103733362822658591}
   - component: {fileID: 6569725666972802481}
+  - component: {fileID: 7104286035928417361}
   - component: {fileID: 1129867965640942779}
   m_Layer: 0
   m_Name: Player
@@ -185,10 +186,34 @@ MonoBehaviour:
   speed: 5
   jumpForce: 5
   stamina: {fileID: 1129867965640942779}
+  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   walkSpeed: 5
   runSpeed: 8
   fatigueSpeed: 3
   staminaBar: {fileID: 0}
+--- !u!114 &7104286035928417361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337901040894270708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7a7cda7fdc4cb489f5fe15df4c0a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileTouchControls
+  showInEditor: 1
+  showOnDesktop: 0
+  referenceResolution: {x: 1920, y: 1080}
+  stickPosition: {x: 170, y: 155}
+  runButtonPosition: {x: -170, y: 155}
+  stickBaseSize: 220
+  stickHandleSize: 120
+  stickMovementRange: 60
+  runButtonSize: 132
+  moveControlPath: <Gamepad>/leftStick
+  sprintControlPath: <Gamepad>/leftStickPress
 --- !u!114 &1129867965640942779
 MonoBehaviour:
   m_ObjectHideFlags: 0
