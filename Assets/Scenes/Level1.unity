@@ -1766,6 +1766,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061972205}
   m_CullTransparentMesh: 1
+--- !u!114 &1064101187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677307404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3203a44dc99c37c4e830912b5716a55d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExitDoor
+  fadeController: {fileID: 1856417750}
+  audioSource: {fileID: 0}
+  victoryClip: {fileID: 8300000, guid: 64753bd402ca6734185cf673cb0cb4e2, type: 3}
 --- !u!64 &1079311425
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3251,6 +3266,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7648502956408741331, guid: 99269adb11a70aa47bab193c15e8feb4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 534440106}
+    - targetCorrespondingSourceObject: {fileID: -7648502956408741331, guid: 99269adb11a70aa47bab193c15e8feb4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1064101187}
     - targetCorrespondingSourceObject: {fileID: -7029948723529949830, guid: 99269adb11a70aa47bab193c15e8feb4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 140855537}
