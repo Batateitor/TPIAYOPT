@@ -11,7 +11,7 @@ public class ChaseState : IState
 
     public void Enter()
     {
-        FadeController fade = Object.FindFirstObjectByType<FadeController>();
+        FadeController fade = Object.FindAnyObjectByType<FadeController>();
 
         if (fade != null)
         {

@@ -22,12 +22,20 @@ public class GuardEnemyAI : MonoBehaviour
     [SerializeField] private float returnSpeed = 2.5f;
     [SerializeField] private float investigationWaitTime = 3f;
 
+    [Header("Capture")]
+    [SerializeField] private float captureDistance = 1.1f;
+    [SerializeField] private float verticalCaptureDistance = 2.25f;
+    [SerializeField] private AudioSource captureAlarmSource;
+    [SerializeField] private AudioClip captureAlarmClip;
+    [SerializeField, Range(0f, 1f)] private float captureAlarmVolume = 1f;
+
     private IGuardEnemyState currentState;
     private NavMeshAgent agent;
     private int currentNodeIndex;
     private int lastVisitedNodeIndex = -1;
     private Vector3 lastSeenPlayerPosition;
     private bool hasLastSeenPlayerPosition;
+    private bool hasCapturedPlayer;
 
     public NavMeshAgent Agent => agent;
     public float ChaseSpeed => chaseSpeed;
@@ -46,6 +54,7 @@ public class GuardEnemyAI : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        ConfigureCaptureAudio();
 
         if (obstacleMask.value == 0)
         {
@@ -61,6 +70,11 @@ public class GuardEnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (TryCapturePlayerByDistance())
+        {
+            return;
+        }
+
         currentState?.Update();
     }
 
@@ -291,6 +305,117 @@ public class GuardEnemyAI : MonoBehaviour
         }
     }
 
+    private bool TryCapturePlayerByDistance()
+    {
+        if (hasCapturedPlayer)
+        {
+            return true;
+        }
+
+        FindPlayerIfNeeded();
+
+        if (player == null)
+        {
+            return false;
+        }
+
+        if (Mathf.Abs(player.position.y - transform.position.y) > verticalCaptureDistance)
+        {
+            return false;
+        }
+
+        Vector3 enemyPosition = transform.position;
+        Vector3 playerPosition = player.position;
+        enemyPosition.y = 0f;
+        playerPosition.y = 0f;
+
+        if (Vector3.Distance(enemyPosition, playerPosition) > captureDistance)
+        {
+            return false;
+        }
+
+        CapturePlayer();
+        return true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        TryCapturePlayerFromObject(collision.gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        TryCapturePlayerFromObject(other.gameObject);
+    }
+
+    private void TryCapturePlayerFromObject(GameObject touchedObject)
+    {
+        if (hasCapturedPlayer || touchedObject == null)
+        {
+            return;
+        }
+
+        Transform touchedTransform = touchedObject.transform;
+
+        if (!touchedObject.CompareTag("Player") && (touchedTransform.root == null || !touchedTransform.root.CompareTag("Player")))
+        {
+            return;
+        }
+
+        CapturePlayer();
+    }
+
+    private void CapturePlayer()
+    {
+        if (hasCapturedPlayer)
+        {
+            return;
+        }
+
+        hasCapturedPlayer = true;
+        StopMoving();
+        PlayCaptureAlarm();
+
+        FadeController fade = Object.FindAnyObjectByType<FadeController>();
+
+        if (fade != null)
+        {
+            fade.FadeAndReload();
+            return;
+        }
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex
+        );
+    }
+
+    private void ConfigureCaptureAudio()
+    {
+        if (captureAlarmSource == null)
+        {
+            captureAlarmSource = GetComponent<AudioSource>();
+        }
+
+        if (captureAlarmSource == null && captureAlarmClip != null)
+        {
+            captureAlarmSource = gameObject.AddComponent<AudioSource>();
+            captureAlarmSource.playOnAwake = false;
+            captureAlarmSource.spatialBlend = 1f;
+            captureAlarmSource.rolloffMode = AudioRolloffMode.Linear;
+            captureAlarmSource.maxDistance = 20f;
+        }
+    }
+
+    private void PlayCaptureAlarm()
+    {
+        if (captureAlarmSource == null || captureAlarmClip == null)
+        {
+            return;
+        }
+
+        captureAlarmSource.PlayOneShot(captureAlarmClip, captureAlarmVolume);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Vector3 eyePosition = transform.position + eyeOffset;
@@ -313,5 +438,8 @@ public class GuardEnemyAI : MonoBehaviour
 
             Gizmos.DrawLine(transform.position, patrolNodes[i].transform.position);
         }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, captureDistance);
     }
 }

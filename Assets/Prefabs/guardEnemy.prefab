@@ -163,3 +163,8 @@ MonoBehaviour:
   chaseSpeed: 4
   returnSpeed: 2.5
   investigationWaitTime: 3
+  captureDistance: 1.1
+  verticalCaptureDistance: 2.25
+  captureAlarmSource: {fileID: 0}
+  captureAlarmClip: {fileID: 8300000, guid: b90464d5eb9311a43b9888723dfffd66, type: 3}
+  captureAlarmVolume: 1
