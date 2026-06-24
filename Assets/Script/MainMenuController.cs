@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadSceneAsync(sceneName));
     }
 
     public void QuitGame()
@@ -71,5 +72,19 @@ public class MainMenuController : MonoBehaviour
     {
         if (button != null && EventSystem.current != null)
             EventSystem.current.SetSelectedGameObject(button.gameObject);
+    }
+
+    private static IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+        if (operation == null)
+        {
+            SceneManager.LoadScene(sceneName);
+            yield break;
+        }
+
+        while (!operation.isDone)
+            yield return null;
     }
 }

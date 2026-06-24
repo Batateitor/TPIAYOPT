@@ -46,7 +46,7 @@ public class FadeController : MonoBehaviour
     private IEnumerator FadeOut(int sceneBuildIndex)
     {
         yield return FadeToBlack();
-        SceneManager.LoadScene(sceneBuildIndex);
+        yield return LoadSceneAsync(sceneBuildIndex);
     }
 
     private IEnumerator FadeOut(string sceneName)
@@ -55,7 +55,7 @@ public class FadeController : MonoBehaviour
             yield break;
 
         yield return FadeToBlack();
-        SceneManager.LoadScene(sceneName);
+        yield return LoadSceneAsync(sceneName);
     }
 
     private IEnumerator FadeToBlack()
@@ -75,5 +75,33 @@ public class FadeController : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    private static IEnumerator LoadSceneAsync(int sceneBuildIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneBuildIndex);
+
+        if (operation == null)
+        {
+            SceneManager.LoadScene(sceneBuildIndex);
+            yield break;
+        }
+
+        while (!operation.isDone)
+            yield return null;
+    }
+
+    private static IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+        if (operation == null)
+        {
+            SceneManager.LoadScene(sceneName);
+            yield break;
+        }
+
+        while (!operation.isDone)
+            yield return null;
     }
 }
