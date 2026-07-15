@@ -12,6 +12,7 @@ public sealed class SceneWarmup : MonoBehaviour
 
     private static SceneWarmup runner;
     private static bool shadersWarmed;
+    private static bool mobileSkipLogged;
 
     private Canvas overlayCanvas;
     private Image overlayImage;
@@ -35,7 +36,30 @@ public sealed class SceneWarmup : MonoBehaviour
 
     private static bool ShouldWarmup(Scene scene)
     {
-        return scene.IsValid() && scene.name != "MainMenu";
+        if (!scene.IsValid() || scene.name == "MainMenu")
+            return false;
+
+        if (IsMobileRuntime())
+        {
+            if (!mobileSkipLogged)
+            {
+                Debug.Log("SceneWarmup disabled on mobile runtime to avoid shader and asset warmup memory spikes.");
+                mobileSkipLogged = true;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool IsMobileRuntime()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        return true;
+#else
+        return Application.isMobilePlatform;
+#endif
     }
 
     private static SceneWarmup EnsureRunner()
